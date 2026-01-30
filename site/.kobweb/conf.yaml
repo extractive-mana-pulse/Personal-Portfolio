@@ -1,0 +1,14 @@
+site:
+  title: "WebCV"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/webcv.js"
+      api: "build/libs/webcv.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/webcv.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
