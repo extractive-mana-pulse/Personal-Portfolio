@@ -17,7 +17,8 @@ kobweb {
             description.set("Powered by Kobweb")
 
             head.add {
-                link(rel = "stylesheet", href = "/fonts/faces.css")
+                link(rel = "stylesheet", href = "/fonts/faceInter.css")
+                link(rel = "stylesheet", href = "/fonts/DMSerif.css")
                 link(rel = "preconnect", href = "https://fonts.googleapis.com")
                 link(rel = "preconnect", href = "https://fonts.gstatic.com") {
                     attributes["crossorigin"] = ""

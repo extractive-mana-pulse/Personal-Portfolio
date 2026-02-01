@@ -1,4 +1,4 @@
-package com.example.webcv.components
+package com.example.webcv.pages.contact
 
 import androidx.compose.runtime.Composable
 import com.example.webcv.ui.PortfolioColors

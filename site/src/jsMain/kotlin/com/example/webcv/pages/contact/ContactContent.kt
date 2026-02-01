@@ -1,4 +1,4 @@
-package com.example.webcv.pages
+package com.example.webcv.pages.contact
 
 import androidx.compose.runtime.*
 import com.example.webcv.ui.PortfolioColors
@@ -27,13 +27,11 @@ internal fun ContactContent() {
     var message by remember { mutableStateOf("") }
     var emailError by remember { mutableStateOf(false) }
 
-    // Email validation function
     fun isValidEmail(email: String): Boolean {
         val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
         return email.matches(emailRegex)
     }
 
-    // Check if form is valid
     val isFormValid = fullName.isNotBlank() &&
             email.isNotBlank() &&
             isValidEmail(email) &&
@@ -46,17 +44,12 @@ internal fun ContactContent() {
             .gap(32.px)
     ) {
 
-
-        // Contact Form Section
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .gap(24.px)
         ) {
-            Spacer(
-
-            )
-            // Full Name and Email Row
+            Spacer()
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -132,7 +125,6 @@ internal fun ContactContent() {
                 }
             }
 
-            // Message TextArea
             TextArea {
                 value(message)
                 onInput { message = it.value }
@@ -161,7 +153,6 @@ internal fun ContactContent() {
                 }
             }
 
-            // Send Button
             Box(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -170,15 +161,12 @@ internal fun ContactContent() {
                 Button({
                     onClick {
                         if (isFormValid) {
-                            // Create mailto link with subject (fullName) and body (message)
                             val subject = js("encodeURIComponent")(fullName) as String
                             val body = js("encodeURIComponent")(message) as String
                             val mailtoLink = "mailto:$email?subject=$subject&body=$body"
 
-                            // Open default email client
                             window.location.href = mailtoLink
 
-                            // Optionally clear the form after sending
                             fullName = ""
                             email = ""
                             message = ""

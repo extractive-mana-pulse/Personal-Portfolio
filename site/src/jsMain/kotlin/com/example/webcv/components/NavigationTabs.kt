@@ -2,7 +2,6 @@ package com.example.webcv.components
 
 import androidx.compose.runtime.Composable
 import com.example.webcv.ui.PortfolioColors
-import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -15,7 +14,6 @@ import org.jetbrains.compose.web.css.px
 
 @Composable
 internal fun NavigationTabs(activeTab: String, onTabChange: (String) -> Unit) {
-    // Generate title based on active tab
     val pageTitle = when (activeTab) {
         "About" -> "About Me"
         "Resume" -> "Resume"
@@ -29,15 +27,18 @@ internal fun NavigationTabs(activeTab: String, onTabChange: (String) -> Unit) {
             .fillMaxWidth()
             .gap(8.px),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Top
     ) {
         Column {
             SpanText(
                 text = pageTitle,
                 modifier = Modifier
                     .fontSize(36.px)
-                    .fontWeight(FontWeight.Bold)
+                    .fontFamily("DM Serif Display", "sans-serif")
                     .color(PortfolioColors.textPrimary)
+                    .padding(
+                        bottom = 24.px
+                    )
             )
             Box(
                 modifier = Modifier

@@ -1,10 +1,10 @@
-package com.example.webcv.components
+package com.example.webcv.pages
 
 import androidx.compose.runtime.Composable
-import com.example.webcv.pages.AboutContent
-import com.example.webcv.pages.ContactContent
-import com.example.webcv.pages.PortfolioContent
-import com.example.webcv.pages.ResumeContent
+import com.example.webcv.components.NavigationTabs
+import com.example.webcv.pages.contact.ContactContent
+import com.example.webcv.pages.portfolio.PortfolioContent
+import com.example.webcv.pages.resume.ResumeContent
 import com.example.webcv.ui.PortfolioColors
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
@@ -28,7 +28,7 @@ internal fun ContentCard(activeTab: String, onTabChange: (String) -> Unit) {
                 onNavigateToTab = { onTabChange(it) },
             )
             "Resume" -> ResumeContent()
-            "Portfolio" -> PortfolioContent()
+            "Portfolio" -> { PortfolioContent() }
             "Contact" -> ContactContent()
         }
     }

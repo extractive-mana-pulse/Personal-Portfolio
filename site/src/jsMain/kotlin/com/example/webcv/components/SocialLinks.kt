@@ -17,19 +17,19 @@ internal fun SocialLinks() {
         horizontalArrangement = Arrangement.spacedBy(12.px)
     ) {
         SocialIcon(
-            icon = "icons/medium.svg",
+            icon = "/icons/medium.svg",
             url = "https://medium.com/@invoker1441",
             borderRadius = 8.px
         )
 
         SocialIcon(
-            icon = "/github.svg",
+            icon = "/icons/github.svg",
             url = "https://github.com/extractive-mana-pulse",
             borderRadius = 0.px
         )
 
         SocialIcon(
-            icon = "icons/linkedin.svg",
+            icon = "/icons/linkedin.svg",
             url = "https://www.linkedin.com/in/mukhammadamin-s/",
             borderRadius = 4.px
         )

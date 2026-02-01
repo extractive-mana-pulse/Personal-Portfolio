@@ -1,7 +1,6 @@
 package com.example.webcv.pages
 
 import androidx.compose.runtime.*
-import com.example.webcv.components.ContentCard
 import com.example.webcv.components.ProfileCard
 import com.example.webcv.ui.PortfolioColors
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement

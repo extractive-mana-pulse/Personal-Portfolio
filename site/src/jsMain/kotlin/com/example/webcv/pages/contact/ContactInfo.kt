@@ -1,4 +1,4 @@
-package com.example.webcv.components
+package com.example.webcv.pages.contact
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -15,14 +15,14 @@ internal fun ContactInfo() {
             .gap(24.px)
     ) {
         ContactItem(
-            icon = "/email.svg",
+            icon = "/icons/email.svg",
             label = "EMAIL",
             value = "mukhammadaminsalokhiddinov@gmail.com",
             url = "mailto:mukhammadaminsalokhiddinov@gmail.com"
         )
 
         ContactItem(
-            icon = "/location.svg",
+            icon = "/icons/location.svg",
             label = "LOCATION",
             value = "Tashkent, Uzbekistan",
             url = "https://maps.app.goo.gl/D53AupAfQudLmSum9"

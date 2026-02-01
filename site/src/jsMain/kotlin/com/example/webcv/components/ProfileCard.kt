@@ -1,8 +1,8 @@
 package com.example.webcv.components
 
 import androidx.compose.runtime.Composable
+import com.example.webcv.pages.contact.ContactInfo
 import com.example.webcv.ui.PortfolioColors
-import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -37,19 +37,20 @@ internal fun ProfileCard() {
                 .backgroundColor(PortfolioColors.border)
         ) {
             Image(
-                src = "/resume_avatar.jpg",
+                src = "/icons/resume_avatar.jpg",
                 modifier = Modifier.fillMaxSize()
             )
         }
 
-        // Name
         SpanText(
             text = "Mukhammadamin Salokhiddinov",
             modifier = Modifier
                 .margin(top = 32.px)
                 .fontSize(28.px)
-                .fontWeight(FontWeight.Normal)
-                .fontFamily("DMSerif")
+                .fontWeight(400)
+                .lineHeight(1.7)
+                .letterSpacing(0.2.px)
+                .fontFamily("DM Serif Display", "sans-serif")
                 .color(PortfolioColors.textPrimary)
                 .textAlign(TextAlign.Center)
         )
@@ -61,6 +62,7 @@ internal fun ProfileCard() {
                 .margin(top = 8.px)
                 .fontSize(16.px)
                 .color(Color.white)
+                .fontFamily("Inter", "sans-serif")
                 .backgroundColor(rgb(38, 38, 38))
                 .borderRadius(8.px)
                 .padding(

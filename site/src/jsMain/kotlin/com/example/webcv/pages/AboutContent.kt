@@ -28,10 +28,10 @@ internal fun AboutContent(
                     .fontFamily("InterReg")
                     .color(PortfolioColors.textSecondary)
             )
-            InfoBullet("icons/laptop.svg", "Currently building technically challenging and innovative projects.")
-            InfoBullet("icons/handshake.svg", "Open to collaborating with developers on innovative and meaningful projects.")
+            InfoBullet("/icons/laptop.svg", "Currently building technically challenging and innovative projects.")
+            InfoBullet("/icons/handshake.svg", "Open to collaborating with developers on innovative and meaningful projects.")
             InfoBullet(
-                icon = "icons/forum.svg",
+                icon = "/icons/forum.svg",
                 text = "You have any questions ? Feel free to reach me out in Contact Section.",
                 onContactClick = { onNavigateToTab("Contact") }
             )
