@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Didot";
+    src: url("public/fonts/GFSDidot-Regular.ttf");
+}
+
+@font-face {
+    font-family: "DMSerif";
+    src: url("public/fonts/DMSerifDisplay-Regular.ttf");
+}
+
+@font-face {
+    font-family: "InterReg";
+    src: url("public/fonts/Inter_28pt-Regular.ttf");
+}

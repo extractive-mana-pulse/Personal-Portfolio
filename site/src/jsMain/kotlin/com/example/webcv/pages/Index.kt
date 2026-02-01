@@ -1,26 +1,41 @@
 package com.example.webcv.pages
 
 import androidx.compose.runtime.*
+import com.example.webcv.components.ContentCard
+import com.example.webcv.components.ProfileCard
+import com.example.webcv.ui.PortfolioColors
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
+import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.Page
-import org.jetbrains.compose.web.css.vh
-import org.jetbrains.compose.web.dom.Text
-import com.varabyte.kobweb.worker.rememberWorker
-import com.example.webcv.worker.EchoWorker
+import org.jetbrains.compose.web.css.px
+
 
 @Page
 @Composable
 fun HomePage() {
-    val worker = rememberWorker { EchoWorker { output -> console.log("Echoed: $output") } }
-    LaunchedEffect(Unit) {
-        worker.postInput("Hello, worker!")
-    }
 
-    // TODO: Replace the following with your own content
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("THIS PAGE INTENTIONALLY LEFT BLANK")
+    var activeTab by remember { mutableStateOf("About") }
+
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(PortfolioColors.background)
+            .padding(40.px),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            modifier = Modifier
+                .maxWidth(1200.px)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(32.px),
+            verticalAlignment = Alignment.Top
+        ) {
+            ProfileCard()
+            ContentCard(activeTab) { activeTab = it }
+        }
     }
 }
