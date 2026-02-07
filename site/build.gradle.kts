@@ -14,6 +14,7 @@ version = "1.0-SNAPSHOT"
 kobweb {
     app {
         index {
+            faviconPath.set("/icons/favicon.svg")
             description.set("Powered by Kobweb")
 
             head.add {
