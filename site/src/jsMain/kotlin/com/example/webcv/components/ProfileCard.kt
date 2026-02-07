@@ -3,6 +3,7 @@ package com.example.webcv.components
 import androidx.compose.runtime.Composable
 import com.example.webcv.pages.contact.ContactInfo
 import com.example.webcv.ui.PortfolioColors
+import com.varabyte.kobweb.compose.css.ObjectFit
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.graphics.ImageFetchPriority
 import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.css.*
 
@@ -37,11 +39,11 @@ internal fun ProfileCard() {
                 .backgroundColor(PortfolioColors.border)
         ) {
             Image(
-                src = "/icons/resume_avatar.jpg",
-                modifier = Modifier.fillMaxSize()
+                src = "/icons/resume_picture.jpg",
+                modifier = Modifier.fillMaxSize().objectFit(ObjectFit.Cover),
+                fetchPriority = ImageFetchPriority.High
             )
         }
-
         SpanText(
             text = "Mukhammadamin Salokhiddinov",
             modifier = Modifier
@@ -54,8 +56,6 @@ internal fun ProfileCard() {
                 .color(PortfolioColors.textPrimary)
                 .textAlign(TextAlign.Center)
         )
-
-        // Title
         SpanText(
             text = "Software Engineer",
             modifier = Modifier
@@ -69,8 +69,6 @@ internal fun ProfileCard() {
                     right = 16.px, left = 16.px, top = 4.px, bottom = 4.px
                 )
         )
-
-        // Divider
         Box(
             modifier = Modifier
                 .width(100.percent)
@@ -78,11 +76,7 @@ internal fun ProfileCard() {
                 .background(PortfolioColors.border)
                 .margin(topBottom = 32.px)
         )
-
-        // Contact Info
         ContactInfo()
-
-        // Social Links
         SocialLinks()
     }
 }
