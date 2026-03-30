@@ -67,6 +67,12 @@ fun ResumeContent() {
                         title = "LongHorn Logistics Company",
                         period = "a month",
                         description = "Initially hired as a Native Android Developer, later contributed to internal process automation and software analysis, helping reduce human error and improve operational efficiency. Currently dedicated full-time to Android development, focusing on performance, feature implementation, and code quality."
+                    ),
+                    ResumeItem(
+                        title = "Masterbek LLC",
+                        period = "2026 — present",
+                        description = "Contributed to improving and maintaining core company projects by identifying issues and optimizing existing code, resulting in performance improvements of up to 60%." +
+                                "\n In addition, led the establishment of Masterbek LLC’s LinkedIn presence and currently oversee its ongoing development and promotion, contributing to enhanced brand visibility and digital positioning."
                     )
                 )
             )

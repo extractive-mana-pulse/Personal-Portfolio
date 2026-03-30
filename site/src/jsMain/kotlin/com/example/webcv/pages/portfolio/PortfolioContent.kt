@@ -20,7 +20,7 @@ internal fun PortfolioContent() {
     val filteredItems = if (selectedCategory == "All") {
         portfolioItems
     } else {
-        portfolioItems.filter { it.category == selectedCategory }
+        portfolioItems.filter { it.categories.contains(selectedCategory) }
     }
 
     Column(
@@ -50,10 +50,7 @@ internal fun PortfolioContent() {
                 .flexWrap(FlexWrap.Wrap)
         ) {
             filteredItems.forEach { item ->
-                PortfolioCard(
-                    item,
-                    url = item.url,
-                )
+                PortfolioCard(item = item)
             }
         }
     }

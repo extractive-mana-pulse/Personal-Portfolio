@@ -17,16 +17,12 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import org.jetbrains.compose.web.css.*
 
 @Composable
-internal fun ProfileCard() {
+internal fun ProfileCard(fullWidth: Boolean = false) {
     Column(
         modifier = Modifier
-            .width(340.px)
+            .then(if (fullWidth) Modifier.fillMaxWidth() else Modifier.width(340.px))
             .background(PortfolioColors.cardBg)
-            .border(
-                width = 1.px,
-                style = LineStyle.Solid,
-                color = PortfolioColors.borderLight
-            )
+            .border(1.px, LineStyle.Solid, PortfolioColors.borderLight)
             .borderRadius(24.px)
             .padding(40.px),
         horizontalAlignment = Alignment.CenterHorizontally
