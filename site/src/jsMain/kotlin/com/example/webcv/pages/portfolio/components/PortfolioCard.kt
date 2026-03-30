@@ -9,6 +9,7 @@ import com.varabyte.kobweb.compose.css.ObjectFit
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -17,120 +18,122 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.graphics.ImageFetchPriority
 import com.varabyte.kobweb.silk.components.text.SpanText
 import kotlinx.browser.window
-import org.jetbrains.compose.web.css.Position
-import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.rgba
+import org.jetbrains.compose.web.css.*
 
 @Composable
-internal fun PortfolioCard(item: PortfolioItem, url: String) {
+internal fun PortfolioCard(item: PortfolioItem) {
     var isHovered by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
+            .styleModifier { property("width", "calc((100% - 24px) / 2)") }
+            .minWidth(260.px)
+            .borderRadius(16.px)
+            .border(1.px, LineStyle.Solid, PortfolioColors.border)
+            .overflow(Overflow.Hidden)
+            .background(PortfolioColors.cardBg)
+            .cursor(Cursor.Pointer)
             .styleModifier {
-                property("width", "calc((100% - 48px) / 2)")
+                property("transition", "transform 0.25s ease, border-color 0.25s ease")
+                if (isHovered) {
+                    property("transform", "translateY(-4px)")
+                    property("border-color", "rgba(255,193,7,0.5)")
+                }
             }
-            .minWidth(280.px)
-            .gap(16.px)
+            .onMouseEnter { isHovered = true }
+            .onMouseLeave { isHovered = false }
+            .onClick { window.open(item.url, "_blank") }
     ) {
-        // Image Container
+        // Image with aspect ratio
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(240.px) // Fixed height instead of size
-                .borderRadius(24.px)
-                .backgroundColor(PortfolioColors.cardBg)
+                .styleModifier { property("aspect-ratio", "16/9") }
                 .overflow(Overflow.Hidden)
-                .position(Position.Relative)
-                .cursor(Cursor.Pointer)
-                .styleModifier {
-                    property("transition", "transform 0.3s ease, box-shadow 0.3s ease")
-                    if (isHovered) {
-                        property("transform", "translateY(-4px)")
-                        property("box-shadow", "0 12px 24px rgba(0, 0, 0, 0.15)")
-                    }
-                }
-                .onMouseEnter { isHovered = true }
-                .onMouseLeave { isHovered = false }
-                .onClick {
-                    window.open(
-                        url = url,
-                        target = "_blank",
-                    )
-                },
+                .position(Position.Relative),
             contentAlignment = Alignment.Center
         ) {
-            // Image
             Image(
                 src = item.imageUrl,
                 modifier = Modifier
                     .fillMaxSize()
-                    .objectFit(ObjectFit.Fill)
+                    .objectFit(ObjectFit.Contain)
                     .styleModifier {
-                        property("transition", "transform 0.3s ease")
-                        if (isHovered) {
-                            property("transform", "scale(1.05)")
-                        }
+                        property("transition", "transform 0.35s ease")
+                        if (isHovered) property("transform", "scale(1.06)")
                     },
                 fetchPriority = ImageFetchPriority.High
             )
 
-            if (isHovered) {
+            // Hover overlay
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .styleModifier {
+                        property("background", "rgba(0,0,0,0.45)")
+                        property("opacity", if (isHovered) "1" else "0")
+                        property("transition", "opacity 0.25s ease")
+                    },
+                contentAlignment = Alignment.Center
+            ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .backgroundColor(rgba(0, 0, 0, 0.5))
-                        .styleModifier {
-                            property("transition", "opacity 0.3s ease")
-                            property("animation", "fadeIn 0.3s ease")
-                        },
+                        .size(48.px)
+                        .borderRadius(50.percent)
+                        .backgroundColor(rgba(255, 255, 255, 0.95)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Box(
+                    Image(
+                        src = "/icons/preview.svg",
                         modifier = Modifier
-                            .size(64.px)
-                            .borderRadius(24.px)
-                            .backgroundColor(rgba(255, 255, 255, 0.95))
-                            .styleModifier {
-                                property("transition", "transform 0.2s ease")
-                                property("animation", "scaleIn 0.3s ease")
-                            },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            src = "/icons/preview.svg",
-                            modifier = Modifier
-                                .size(28.px)
-                                .styleModifier {
-                                    property("filter", "brightness(0.3)")
-                                }
-                        )
-                    }
+                            .size(20.px)
+                            .styleModifier { property("filter", "brightness(0.2)") }
+                    )
                 }
             }
         }
 
+        // Card footer
         Column(
             modifier = Modifier
-                .gap(4.px)
-                .padding(leftRight = 4.px)
+                .fillMaxWidth()
+                .padding(16.px)
+                .gap(8.px)
         ) {
-            SpanText(
-                text = item.title,
-                modifier = Modifier
-                    .fontSize(20.px)
-                    .fontWeight(FontWeight.SemiBold)
-                    .color(PortfolioColors.textPrimary)
-                    .lineHeight(1.4)
-            )
-            SpanText(
-                text = item.platform,
-                modifier = Modifier
-                    .fontSize(14.px)
-                    .fontWeight(FontWeight.Normal)
-                    .color(PortfolioColors.textSecondary)
-                    .opacity(0.8)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth().gap(8.px),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                SpanText(
+                    text = item.title,
+                    modifier = Modifier
+                        .fontSize(16.px)
+                        .fontWeight(FontWeight.SemiBold)
+                        .color(PortfolioColors.textPrimary)
+                        .styleModifier { property("flex", "1") }
+                )
+                SpanText(
+                    text = item.platforms.joinToString(" · "),
+                    modifier = Modifier
+                        .fontSize(11.px)
+                        .fontWeight(FontWeight.Medium)
+                        .color(PortfolioColors.accent)
+                        .backgroundColor(rgba(255, 193, 7, 0.12))
+                        .borderRadius(6.px)
+                        .padding(topBottom = 3.px, leftRight = 8.px)
+                        .styleModifier { property("white-space", "nowrap") }
+                )
+            }
+
+            if (item.description.isNotEmpty()) {
+                SpanText(
+                    text = item.description,
+                    modifier = Modifier
+                        .fontSize(13.px)
+                        .color(PortfolioColors.textSecondary)
+                        .lineHeight(1.5)
+                )
+            }
         }
     }
 }
